@@ -1,0 +1,139 @@
+@import "../abstracts/mixins";
+
+nb-card-body.example-items-col {
+  align-items: stretch;
+}
+
+.center {
+  @include flex;
+}
+
+.relative {
+  position: relative;
+
+  &::after {
+    content: attr(data-error-message);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    @include errorMessage;
+  }
+}
+.absolute {
+  @include absolute;
+}
+
+.eyeBtn {
+  position: absolute;
+  top: 0;
+}
+
+.card {
+  @include cardStyles;
+
+  .heading {
+    @include textCenter;
+
+    a {
+      text-decoration: none;
+      color: black;
+      font-size: 1.5rem;
+
+      .arrow-left {
+        color: #274bdb;
+      }
+    }
+
+    h1 {
+      margin: auto;
+      transform: translateX(-10%);
+      color: #274bdb;
+    }
+  }
+
+  form {
+    margin-top: 2rem;
+
+    .label {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 1rem;
+
+      &::before {
+        content: "*";
+        color: rgb(218, 90, 90);
+        margin-right: 0.3rem;
+      }
+    }
+  }
+}
+
+.ghost {
+  border: none;
+  outline: none;
+  background: none;
+  font-weight: bold;
+  opacity: 0.5;
+}
+
+nb-form-field {
+  margin-bottom: 1rem;
+}
+
+.radio {
+  opacity: 0.7;
+}
+
+.signUp {
+  text-align: center;
+
+  p {
+    color: rgb(99, 96, 96);
+    margin-top: 2rem;
+    font-weight: bold;
+
+    a {
+      color: #274bdb;
+      font-style: italic;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.flex {
+  display: flex;
+  gap: 1rem;
+
+  div {
+    width: 50%;
+  }
+}
+
+.invalid-feedback {
+  @include errorMessage;
+}
+
+.register-btn {
+  margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: 80%;
+  }
+}
+
+@media (max-width: 576px) {
+  .card {
+    width: 90%;
+
+    .heading {
+      h1 {
+        font-size: 1.5rem;
+      }
+    }
+  }
+}

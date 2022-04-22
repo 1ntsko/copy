@@ -1,0 +1,7 @@
+<ng-container *ngIf="roleNumber === role.Patient">
+  <app-patient-dashboard></app-patient-dashboard>
+</ng-container>
+
+<ng-container *ngIf="roleNumber === role.Doctor">
+  <app-doctor-dashboard></app-doctor-dashboard>
+</ng-container>

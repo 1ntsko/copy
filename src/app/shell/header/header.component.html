@@ -1,0 +1,12 @@
+<section class="header">
+  <div class="logo">
+    <fa-icon [icon]="faBars" class="burger" (click)="toggle()"></fa-icon>
+    <img src="../../../assets/logo.png" alt="logo" />
+    <h1 class="heading">Medbooker</h1>
+  </div>
+
+  <div class="profile">
+    <p>{{ user }}</p>
+    <button nbButton status="danger" (click)="signOut()">Log Out</button>
+  </div>
+</section>

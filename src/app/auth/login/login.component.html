@@ -1,0 +1,86 @@
+<nb-layout class="bg">
+  <nb-layout-column class="center">
+    <nb-card class="card">
+      <nb-card-body class="example-items-col">
+        <div class="heading">
+          <span>
+            <a routerLink="/">
+              <fa-icon class="arrow-left" [icon]="faAngleLeft"></fa-icon>
+            </a>
+          </span>
+          <h1>Sign In</h1>
+        </div>
+        <form [formGroup]="loginForm!">
+          <label for="email" class="label">Email:</label>
+          <nb-form-field
+            class="relative"
+            [attr.data-error-message]="getErrorMessage('email')"
+          >
+            <nb-icon nbPrefix icon="at-outline" pack="eva"></nb-icon>
+            <input
+              type="text"
+              id="email"
+              nbInput
+              fullWidth
+              placeholder="user@example.com"
+              formControlName="email"
+              [status]="getStatus('email')"
+            />
+          </nb-form-field>
+
+          <label for="password" class="label">Password:</label>
+          <nb-form-field
+            class="relative"
+            [attr.data-error-message]="getErrorMessage('password')"
+          >
+            <input
+              [type]="getInputType()"
+              nbInput
+              fullWidth
+              formControlName="password"
+              placeholder="password"
+              [status]="getStatus('password')"
+            />
+            <button
+              nbSuffix
+              nbButton
+              ghost
+              (click)="toggleShowPassword($event)"
+              class="ghost"
+            >
+              <nb-icon
+                [icon]="showPassword ? 'eye-outline' : 'eye-off-2-outline'"
+                pack="eva"
+                [attr.aria-label]="
+                  showPassword ? 'hide password' : 'show password'
+                "
+              >
+              </nb-icon>
+            </button>
+          </nb-form-field>
+
+          <div class="signUp">
+            <span *ngIf="isError" class="errMsg">
+              {{ errorMessage }}
+            </span>
+            <button
+              fullWidth
+              nbButton
+              hero
+              status="primary"
+              class="register-btn"
+              (click)="signIn()"
+              type="button"
+              [disabled]="!loginForm?.valid"
+            >
+              Sign In
+            </button>
+            <p>
+              Don't have an account yet? <a routerLink="/register">Sign Up</a>
+            </p>
+          </div>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </nb-layout-column>
+</nb-layout>

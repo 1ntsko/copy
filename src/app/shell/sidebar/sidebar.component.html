@@ -1,0 +1,44 @@
+<ul>
+  <li>
+    <a nbButton status="info" routerLink="dashboard" routerLinkActive="active"
+      >Dashboard</a
+    >
+  </li>
+  <li *ngIf="roleNumber === role.Doctor">
+    <a
+      nbButton
+      status="info"
+      routerLink="consultation-requests"
+      routerLinkActive="active"
+      >Requests</a
+    >
+  </li>
+  <li *ngIf="roleNumber === role.Patient">
+    <a nbButton status="info" routerLink="search" routerLinkActive="active"
+      >Doctors</a
+    >
+  </li>
+  <li>
+    <a
+      nbButton
+      status="info"
+      routerLink="upcoming-consultations"
+      routerLinkActive="active"
+      >Upcoming Consultations</a
+    >
+  </li>
+  <li *ngIf="roleNumber === role.Patient">
+    <a
+      nbButton
+      status="info"
+      routerLink="health-records"
+      routerLinkActive="active"
+      >Health Records</a
+    >
+  </li>
+  <li *ngIf="roleNumber === role.Doctor">
+    <a nbButton status="info" routerLink="patients" routerLinkActive="active"
+      >Population</a
+    >
+  </li>
+</ul>

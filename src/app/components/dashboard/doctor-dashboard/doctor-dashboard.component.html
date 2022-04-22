@@ -1,0 +1,21 @@
+<nb-card class="requests">
+  <nb-card-header>Consultation requests</nb-card-header>
+  <nb-card-body *ngFor="let booking of bookings$ | async; let i = index">
+    <app-request-card
+      [booking]="booking"
+      (statusType)="statusChangeHandler($event)"
+    ></app-request-card>
+  </nb-card-body>
+</nb-card>
+
+<nb-card accent="info" class="consultations">
+  <nb-card-body>
+    <h1>Upcoming consultations</h1>
+  </nb-card-body>
+</nb-card>
+
+<nb-card accent="info" class="populations">
+  <nb-card-body>
+    <h1>Populations</h1>
+  </nb-card-body>
+</nb-card>

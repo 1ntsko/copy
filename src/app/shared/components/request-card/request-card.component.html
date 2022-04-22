@@ -1,0 +1,24 @@
+<section>
+  <div class="date">
+    <p>{{ booking?.startTime | date: "mediumDate" }}</p>
+    <p>14:00</p>
+  </div>
+  <div class="info">
+    <h3>
+      {{booking?.attendees?.[0]?.entity?.firstName}}
+      {{booking?.attendees?.[0]?.entity?.lastName}}
+    </h3>
+    <button
+      (click)="updateBooking(status.CONFIRMED, booking?.id)"
+      class="accept"
+    >
+      accept
+    </button>
+    <button
+      (click)="updateBooking(status.DECLINED, booking?.id)"
+      class="reject"
+    >
+      reject
+    </button>
+  </div>
+</section>

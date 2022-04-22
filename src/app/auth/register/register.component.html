@@ -1,0 +1,184 @@
+<nb-layout class="bg">
+  <nb-layout-column class="center">
+    <nb-card class="card">
+      <nb-card-body class="example-items-col">
+        <div class="heading">
+          <span>
+            <a routerLink="/">
+              <fa-icon class="arrow-left" [icon]="faAngleLeft"></fa-icon>
+            </a>
+          </span>
+          <h1>Register</h1>
+        </div>
+        <ng-container *ngIf="registerForm">
+          <form [formGroup]="registerForm">
+            <section class="flex">
+              <div>
+                <label for="firstname" class="label">First Name:</label>
+                <nb-form-field
+                  class="relative"
+                  [attr.data-error-message]="getErrorMessage('firstName')"
+                >
+                  <input
+                    id="firstname"
+                    type="text"
+                    fullWidth
+                    nbInput
+                    placeholder="First Name"
+                    formControlName="firstName"
+                    [status]="getStatus('firstName')"
+                  />
+                </nb-form-field>
+              </div>
+
+              <div>
+                <label for="lastname" class="label">Last Name:</label>
+                <nb-form-field
+                  class="relative"
+                  [attr.data-error-message]="getErrorMessage('lastName')"
+                >
+                  <input
+                    id="lastname"
+                    type="text"
+                    fullWidth
+                    nbInput
+                    placeholder="Last Name"
+                    formControlName="lastName"
+                    [status]="getStatus('lastName')"
+                  />
+                </nb-form-field>
+              </div>
+            </section>
+
+            <label for="email" class="label">Email:</label>
+            <nb-form-field
+              class="relative"
+              [attr.data-error-message]="getErrorMessage('email')"
+            >
+              <nb-icon nbPrefix icon="at-outline" pack="eva"></nb-icon>
+              <input
+                type="text"
+                id="email"
+                nbInput
+                fullWidth
+                placeholder="user@example.com"
+                formControlName="email"
+                [status]="getStatus('email')"
+              />
+            </nb-form-field>
+
+            <div formGroupName="passwordGroup">
+              <label for="password" class="label">Password:</label>
+              <nb-form-field
+                class="relative"
+                [attr.data-error-message]="
+                  getErrorMessage('passwordGroup.password')
+                "
+              >
+                <input
+                  [type]="getInputType()"
+                  nbInput
+                  fullWidth
+                  placeholder="password"
+                  formControlName="password"
+                  [status]="getStatus('passwordGroup.password')"
+                />
+                <button
+                  nbSuffix
+                  nbButton
+                  ghost
+                  (click)="toggleShowPassword($event)"
+                  class="ghost eyeBtn"
+                >
+                  <nb-icon
+                    [icon]="showPassword ? 'eye-outline' : 'eye-off-2-outline'"
+                    pack="eva"
+                    [attr.aria-label]="
+                      showPassword ? 'hide password' : 'show password'
+                    "
+                  >
+                  </nb-icon>
+                </button>
+              </nb-form-field>
+
+              <label for="password" class="label">Confirm Password:</label>
+              <nb-form-field
+                class="relative"
+                [attr.data-error-message]="
+                  getErrorMessage('passwordGroup.confirmPassword')
+                "
+              >
+                <input
+                  [type]="getConfrimPasswordType()"
+                  nbInput
+                  fullWidth
+                  placeholder="confirm password"
+                  formControlName="confirmPassword"
+                  [status]="getStatus('passwordGroup.confirmPassword')"
+                />
+                <button
+                  nbSuffix
+                  nbButton
+                  ghost
+                  (click)="toggleShowConfirmPassword($event)"
+                  class="ghost eyeBtn"
+                >
+                  <nb-icon
+                    [icon]="
+                      showConfirmPassword ? 'eye-outline' : 'eye-off-2-outline'
+                    "
+                    pack="eva"
+                    [attr.aria-label]="
+                      showConfirmPassword ? 'hide password' : 'show password'
+                    "
+                  >
+                  </nb-icon>
+                </button>
+                <span class="invalid-feedback">
+                  <span
+                    *ngIf="registerForm.get('passwordGroup')?.errors?.['match'] && registerForm.get('passwordGroup.confirmPassword')?.dirty"
+                  >
+                    The confirmation does not match the password.
+                  </span>
+                </span>
+              </nb-form-field>
+            </div>
+
+            <label class="label">Role:</label>
+            <nb-radio-group
+              formGroupName="role"
+              formControlName="role"
+              [name]="status"
+              [status]="status"
+              [class.control-status-example]="status === 'control'"
+            >
+              <nb-radio
+                class="radio"
+                *ngFor="let option of options"
+                [value]="option.value"
+              >
+                {{ option.label }}
+              </nb-radio>
+            </nb-radio-group>
+
+            <div class="signUp">
+              <span *ngIf="isError" class="errMsg">{{ errorMsg }}</span>
+              <button
+                fullWidth
+                nbButton
+                hero
+                status="primary"
+                class="register-btn"
+                (click)="registerUser()"
+                [disabled]="!registerForm.valid"
+              >
+                Sign Up
+              </button>
+              <p>Already have an account? <a routerLink="/login">Sign In</a></p>
+            </div>
+          </form>
+        </ng-container>
+      </nb-card-body>
+    </nb-card>
+  </nb-layout-column>
+</nb-layout>
